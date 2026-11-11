@@ -1,0 +1,10 @@
+{
+  "id": "fuerza-bruta-banco",
+  "titulo": "Fuerza bruta contra el inicio de sesión del banco",
+  "plataforma": "banco",
+  "pasos": [
+    { "en": "0s", "trafico": { "rps": 1 } },
+    { "en": "10s", "ataque": { "servicio": "auth-banca", "tipo": "brute_force", "intensidad": 2, "duracion_s": 40 } },
+    { "en": "70s", "restaurar": "todo" }
+  ]
+}

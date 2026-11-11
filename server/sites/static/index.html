@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sitios de demostración · Don Federico</title>
+<style>
+@font-face{font-family:"Nunito Sans";font-weight:400;font-display:swap;src:url(shared/fonts/nunito-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito Sans";font-weight:700;font-display:swap;src:url(shared/fonts/nunito-sans-latin-700-normal.woff2) format("woff2")}
+:root{--ease:cubic-bezier(.2,0,0,1)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Nunito Sans","Segoe UI",Arial,sans-serif;color:#2a343d;background:#f5f9ff radial-gradient(900px 500px at 10% 0,#e8efff,transparent 60%);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:1080px;margin:0 auto;padding:56px 24px}
+h1{font-size:34px;line-height:40px;margin:0 0 8px;color:#001b4c}
+.lead{margin:0 0 36px;color:#52677b;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.site{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#fff;text-decoration:none;color:inherit;box-shadow:0 0 0 1px rgba(0,36,100,.05),0 4px 12px rgba(0,36,100,.1);transition:translate .22s var(--ease),box-shadow .22s var(--ease);animation:rise .42s var(--ease) both;animation-delay:calc(var(--i)*70ms)}
+.site:hover{translate:0 -4px;box-shadow:0 0 0 1px rgba(0,36,100,.05),0 16px 32px -8px rgba(0,36,100,.22)}
+.site:active{translate:0 -1px}
+.top{height:150px;display:grid;place-items:center;color:#fff;position:relative;overflow:hidden}
+.top::before,.top::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.top::before{width:200px;height:200px;left:-60px;top:-90px}.top::after{width:140px;height:140px;right:-30px;bottom:-60px}
+.top .lu{width:64px;height:64px;position:relative;transition:scale .3s var(--ease)}
+.site:hover .top .lu{scale:1.08}
+.body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.body h2{margin:0;font-size:22px;line-height:28px}
+.body p{margin:0;font-size:14px;line-height:20px;color:#52677b}
+.go{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px}
+.go .lu{width:18px;height:18px;transition:translate .2s var(--ease)}.site:hover .go .lu{translate:3px 0}
+.mercado .top{background:#0a8920}.mercado h2,.mercado .go{color:#076d19;font-family:"Source Sans 3","Nunito Sans",sans-serif}
+.banco .top{background:#002464}.banco h2,.banco .go{color:#295eff}
+.clinica .top{background:#008089}.clinica h2,.clinica .go{color:#026168}
+.back{display:inline-flex;align-items:center;gap:6px;margin-top:24px;min-height:44px;color:#52677b;text-decoration:none;font-size:14px;font-weight:700;transition:color .15s var(--ease)}.back:hover{color:#295eff}.back .lu{width:16px;height:16px}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+:focus-visible{outline:2px solid #295eff;outline-offset:3px;border-radius:12px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}main{padding:36px 16px}h1{font-size:28px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style></head>
+<body><main>
+<h1>Sitios de demostración</h1>
+<p class="lead">Empresas ficticias monitoreadas por Sentinel. Ninguna es una empresa real.</p>
+<div class="grid">
+<a class="site mercado" href="mercado/" style="--i:0"><div class="top"><i data-i="shopping-cart" data-sw="1.4"></i></div><div class="body"><h2>Mercado Don Federico</h2><p>Supermercado en línea · carrito, cupón y pago</p><span class="go">Abrir sitio <i data-i="arrow-right" data-sw="2"></i></span></div></a>
+<a class="site banco" href="banco/" style="--i:1"><div class="top"><i data-i="landmark" data-sw="1.4"></i></div><div class="body"><h2>Banco Don Federico</h2><p>Portal de personas · saldos, movimientos y transferencias</p><span class="go">Abrir sitio <i data-i="arrow-right" data-sw="2"></i></span></div></a>
+<a class="site clinica" href="clinica/" style="--i:2"><div class="top"><i data-i="hospital" data-sw="1.4"></i></div><div class="body"><h2>Clínica Don Federico</h2><p>Reserva de horas, exámenes y servicios</p><span class="go">Abrir sitio <i data-i="arrow-right" data-sw="2"></i></span></div></a>
+</div>
+<a class="back" href="/"><i data-i="chevron-left" data-sw="2"></i> Consola Demo Day</a> <a class="back" href="shared/photos/creditos.html" style="margin-left:24px">Créditos de fotografías</a>
+</main>
+<script type="module">import { hydrateIcons } from './shared/icons.js'; hydrateIcons();</script>
+<style>.lu{width:1em;height:1em;flex:none;vertical-align:-.125em}i[data-i]{display:inline-block;width:1em;height:1em}</style>
+</body></html>

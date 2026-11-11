@@ -1,0 +1,19 @@
+# Se suma a docker-compose.yml cuando Sentinel corre en Docker en esta misma
+# máquina: demo-lab entra a su red, así se alcanzan por nombre y el sondeo no
+# depende de cómo publique Docker los puertos.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.sentinel-local.yml up -d --build
+
+services:
+  demo-lab:
+    environment:
+      DEMO_SENTINEL_URL: http://api-go:8080
+      DEMO_PUBLIC_URL: http://demo-lab:7000
+    networks:
+      - default
+      - sentinel
+
+networks:
+  sentinel:
+    name: sentinel_monitoring-network
+    external: true

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consola Demo Day · demo-lab</title>
+<script>try{var t=localStorage.getItem("demo-lab-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<link rel="stylesheet" href="/console/console.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="topbar">
+  <h1>Consola Demo Day <span class="muted">· demo-lab</span></h1>
+  <nav aria-label="Secciones de la consola"><div class="tabs" role="tablist" aria-label="Pestañas de la consola">
+  <button type="button" role="tab" id="tab-inicio" data-tab="inicio" data-guide="general-checklist" aria-controls="panel-inicio" aria-selected="true" tabindex="0">Inicio</button>
+  <button type="button" role="tab" id="tab-mercado" data-tab="mercado" data-guide="platform-tabs" aria-controls="panel-mercado" aria-selected="false" tabindex="-1">
+    <span class="dot idle" data-tab-dot="mercado" aria-hidden="true"></span>Mercado<span class="tab-count" data-tab-count="mercado" hidden></span>
+  </button>
+  <button type="button" role="tab" id="tab-banco" data-tab="banco" data-guide="platform-tabs" aria-controls="panel-banco" aria-selected="false" tabindex="-1">
+    <span class="dot idle" data-tab-dot="banco" aria-hidden="true"></span>Banco<span class="tab-count" data-tab-count="banco" hidden></span>
+  </button>
+  <button type="button" role="tab" id="tab-clinica" data-tab="clinica" data-guide="platform-tabs" aria-controls="panel-clinica" aria-selected="false" tabindex="-1">
+    <span class="dot idle" data-tab-dot="clinica" aria-hidden="true"></span>Clínica<span class="tab-count" data-tab-count="clinica" hidden></span>
+  </button>
+  <button type="button" role="tab" id="tab-actividad" data-tab="actividad" data-guide="activity-logs" aria-controls="panel-actividad" aria-selected="false" tabindex="-1">Actividad</button>
+  <button type="button" role="tab" id="tab-datos" data-tab="datos" data-guide="data-shipping" aria-controls="panel-datos" aria-selected="false" tabindex="-1">Datos y envío</button>
+</div></nav>
+  <button id="conn-pill" type="button" class="conn-pill" data-guide="general-checklist" title="Estado de la conexión con Sentinel; abre Inicio">
+    <span id="conn-dot" class="dot idle" aria-hidden="true"></span>
+    <span id="conn-text">conectando…</span>
+  </button>
+  <button id="btn-theme" type="button" class="theme-toggle" aria-label="Cambiar a modo claro" title="Cambiar a modo claro"><i data-i="sun" class="ic-sun"></i><i data-i="moon" class="ic-moon"></i></button>
+  <button id="btn-guide" type="button" class="guide-open" aria-controls="guide" aria-expanded="false" data-guide="general-checklist">Guía</button>
+  <div class="menu-wrap">
+    <button id="btn-menu" type="button" class="menu-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu" data-guide="general-menu">⋯<span class="sr-only">Más acciones</span></button>
+    <div id="menu" class="menu" role="menu" hidden>
+      <span id="profile" class="menu-meta">…</span>
+      <button type="button" role="menuitem" id="btn-restore-all" data-guide="general-restore-all">Restaurar todo</button>
+      <button type="button" role="menuitem" id="btn-reset" class="danger" data-guide="general-reset">Reiniciar escenario</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="panel" id="panel-inicio" role="tabpanel" aria-labelledby="tab-inicio" tabindex="0">
+    <header class="page-head">
+      <div class="page-title"><h2>Inicio</h2><p class="muted small">Prepara el escenario antes de abrir el stand y sigue lo que pasa durante la demo.</p></div>
+    </header>
+    <div class="layout">
+      <div class="layout-main">
+        <section class="card">
+          <h2>Antes de abrir <button type="button" class="help" data-guide="general-checklist" aria-label="Explicar la lista de preparación">?</button></h2>
+          <ul class="checklist" id="checklist">
+            <li data-check="sentinel"><span class="dot idle" aria-hidden="true"></span><div><b>Sentinel conectado</b><span class="muted small" data-check-detail>Comprobando…</span></div></li>
+            <li data-check="scenario"><span class="dot idle" aria-hidden="true"></span><div><b>Escenario preparado</b><span class="muted small" data-check-detail>Sin comprobar.</span></div></li>
+            <li data-check="nodes"><span class="dot idle" aria-hidden="true"></span><div><b>Nodos del mapa con sondeo <button type="button" class="help" data-guide="general-nodes" aria-label="Explicar los nodos del mapa">?</button></b><span class="muted small" data-check-detail>Sin comprobar.</span></div></li>
+            <li data-check="traffic"><span class="dot idle" aria-hidden="true"></span><div><b>Tráfico encendido en las tres plataformas</b><span class="muted small" data-check-detail>Comprobando…</span></div></li>
+            <li data-check="warmup"><span class="dot idle" aria-hidden="true"></span><div><b>Calentamiento de 10 min</b><span class="muted small" data-check-detail>Se mide desde que se abre esta consola.</span></div></li>
+          </ul>
+          <p id="verify-note" class="muted small"></p>
+          <div class="row">
+            <button id="btn-verify" type="button" data-guide="general-verify">Verificar conexión</button>
+            <button id="btn-provision" type="button" class="good" data-guide="general-provision">Preparar escenario</button>
+          </div>
+        </section>
+      </div>
+      <aside class="layout-side">
+        <section class="card">
+          <h2>Ahora mismo</h2>
+          <div id="home-active" class="active-list muted">Sin fallas ni ataques activos.</div>
+        </section>
+
+        <!--SITIOS-->
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-mercado" role="tabpanel" aria-labelledby="tab-mercado" tabindex="0" hidden>
+    <div data-platform-host="mercado"></div>
+  </section>
+  <section class="panel" id="panel-banco" role="tabpanel" aria-labelledby="tab-banco" tabindex="0" hidden>
+    <div data-platform-host="banco"></div>
+  </section>
+  <section class="panel" id="panel-clinica" role="tabpanel" aria-labelledby="tab-clinica" tabindex="0" hidden>
+    <div data-platform-host="clinica"></div>
+  </section>
+
+  <section class="panel" id="panel-actividad" role="tabpanel" aria-labelledby="tab-actividad" tabindex="0" hidden>
+    <header class="page-head">
+      <div class="page-title"><h2>Actividad</h2><p class="muted small">Lo que registran las tres plataformas y cada acción hecha desde esta consola.</p></div>
+    </header>
+    <div class="layout">
+      <div class="layout-main">
+        <section class="card">
+          <h2>Logs en vivo <span class="muted small">(últimos 200)</span> <button type="button" class="help" data-guide="activity-logs" aria-label="Explicar los logs">?</button></h2>
+          <div class="row" style="margin-bottom:8px">
+            <select id="lg-platform" aria-label="Plataforma de los logs" data-guide="activity-logs">
+              <option value="">todas</option>
+            </select>
+            <select id="lg-level" aria-label="Nivel mínimo de los logs" data-guide="activity-logs">
+              <option value="">todos los niveles</option>
+              <option value="info">info</option>
+              <option value="warning">warning</option>
+              <option value="error">error</option>
+              <option value="critical">critical</option>
+            </select>
+            <button id="btn-logs-refresh" type="button" data-guide="activity-logs">Actualizar</button>
+          </div>
+          <pre id="logs" class="mono logs-view" aria-live="polite"></pre>
+        </section>
+      </div>
+      <aside class="layout-side">
+        <section class="card">
+          <h2>Bitácora <a class="muted" href="/control/v1/journal?format=csv" data-guide="activity-journal">(CSV)</a> <button type="button" class="help" data-guide="activity-journal" aria-label="Explicar la bitácora">?</button></h2>
+          <pre id="journal" class="mono logs-view"></pre>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-datos" role="tabpanel" aria-labelledby="tab-datos" tabindex="0" hidden>
+    <header class="page-head">
+      <div class="page-title"><h2>Datos y envío</h2><p class="muted small">Qué se manda a Sentinel, historial de incidentes falsos y la maratón de ciclos automáticos.</p></div>
+    </header>
+    <div class="layout">
+      <div class="layout-main">
+        <section class="card">
+          <h2>Envío de logs a Sentinel <button type="button" class="help" data-guide="data-shipping" aria-label="Explicar el envío de logs">?</button></h2>
+          <div class="form-grid">
+            <label><input type="checkbox" id="sh-enabled" data-guide="data-shipping"> Envío activo</label>
+            <label>Nivel mínimo <select id="sh-level" data-guide="data-shipping"><option>info</option><option>warning</option><option>error</option><option>critical</option></select></label>
+            <label>Muestreo INFO <input id="sh-sample" type="number" min="0" max="1" step="0.05" data-guide="data-shipping"></label>
+            <label>Presupuesto/min <input id="sh-budget" type="number" min="1" data-guide="data-shipping"></label>
+          </div>
+          <dl id="metrics" class="stats"></dl>
+          <p id="metrics-error" class="muted small" hidden></p>
+          <div class="row">
+            <button id="btn-shipping" type="button" data-guide="data-shipping">Aplicar</button>
+            <button id="btn-reship" type="button" data-guide="data-reship">Reenviar últimos 10 min (≥ error)</button>
+          </div>
+          <p class="note">Cada evento procesado cuesta una llamada a Bedrock; el presupuesto por minuto acota el gasto.</p>
+        </section>
+
+        <section class="card">
+          <h2>Historial sintético <button type="button" class="help" data-guide="data-history" aria-label="Explicar el historial sintético">?</button></h2>
+          <div class="form-grid">
+            <label>Días <input id="hs-days" type="number" min="1" max="365" value="30" data-guide="data-history"></label>
+            <label>Incidentes/día <input id="hs-per" type="number" min="1" max="20" value="3" data-guide="data-history"></label>
+            <label>MTTR <select id="hs-trend" data-guide="data-history"><option value="mejora">Mejora</option><option value="empeora">Empeora</option></select></label>
+          </div>
+          <p class="note">Solo perfil local con <code>allow_db_backfill</code> y <code>DEMO_DB_DSN</code>. <b>No funciona desde el contenedor</b>: se carga con <code>go run</code> en la máquina que tiene Sentinel.</p>
+          <div class="row">
+            <button id="btn-history" type="button" class="good" data-guide="data-history">Generar historial</button>
+            <button id="btn-history-del" type="button" class="danger" data-guide="data-history-delete">Borrar historial</button>
+          </div>
+        </section>
+      </div>
+      <aside class="layout-side">
+        <section class="card">
+          <h2>Maratón <button type="button" class="help" data-guide="data-marathon" aria-label="Explicar la maratón">?</button></h2>
+          <div class="form-grid">
+            <label>Duración (h) <input id="mr-hours" type="number" min="0.1" max="72" step="0.5" value="1" data-guide="data-marathon"></label>
+            <label>Un ciclo cada (min) <input id="mr-cad" type="number" min="1" value="10" data-guide="data-marathon"></label>
+          </div>
+          <div class="row">
+            <button id="btn-marathon" type="button" class="good" data-guide="data-marathon">Iniciar maratón</button>
+            <button id="btn-marathon-stop" type="button" class="danger" data-guide="data-marathon-stop">Detener</button>
+          </div>
+          <div id="marathon" class="muted small">Maratón detenida.</div>
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<aside id="guide" class="guide" role="dialog" aria-modal="false" aria-labelledby="guide-title" hidden>
+  <div class="guide-head">
+    <h2 id="guide-title">Guía de la consola</h2>
+    <button id="guide-close" type="button" class="guide-close" aria-label="Cerrar la guía"><i data-i="x" data-sw="2.2"></i></button>
+  </div>
+  <div class="guide-body" id="guide-body"></div>
+</aside>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script type="module" src="/console/console.js"></script>
+</body>
+</html>

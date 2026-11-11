@@ -1,0 +1,12 @@
+{
+  "id": "caida-bd-mercado",
+  "titulo": "Caída de la base transaccional en plena compra",
+  "plataforma": "mercado",
+  "pasos": [
+    { "en": "0s", "trafico": { "rps": 2 }, "nota": "Todo en verde" },
+    { "en": "20s", "falla": { "servicio": "db-transaccional", "tipo": "down", "params": { "mode": "refused" } } },
+    { "en": "25s", "accion_usuario": { "accion": "checkout", "repetir": 3 } },
+    { "en": "150s", "restaurar": "todo" },
+    { "en": "155s", "accion_usuario": { "accion": "checkout", "repetir": 2 } }
+  ]
+}

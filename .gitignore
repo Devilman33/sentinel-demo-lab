@@ -1,0 +1,13 @@
+.state/
+data/
+config/profiles/*.json
+!config/profiles/*.example.json
+node_modules/
+dist/
+*.local
+.referencias_sitios*
+.env
+!.env.example
+# La regla «logs» del .gitignore de la raíz también tapaba este paquete de Go
+# (logger y envío): nunca entró a git y la rama no compilaba en otro clon.
+!server/logs/

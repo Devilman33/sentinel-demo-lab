@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercado Don Federico · Tu supermercado en línea</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../shared/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../shared/fonts/source-sans-3-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/common.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="utility" role="region" aria-label="Enlaces de servicio"><div class="wrap">
+  <span class="u-left">Despacho a domicilio y retiro en tienda</span><span class="grow"></span>
+  <button class="u-link" type="button">Puntos Don Federico <i data-i="chevron-down"></i></button>
+  <button class="u-link" type="button">Tarjeta Don Federico <i data-i="chevron-down"></i></button>
+  <a href="#">Centro de ayuda</a><a href="#">Estado del pedido</a>
+</div></div>
+
+<header class="head">
+  <div class="wrap main">
+    <a class="logo" href="#" aria-label="Mercado Don Federico">
+      <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#0a8920"/><path d="M11 24c0-8 6-13 15-13 0 9-5 15-13 15" fill="#fff"/><path d="M12 29c4-8 8-11 14-14" stroke="#0a8920" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      <span><b>Mercado</b> Don Federico</span>
+    </a>
+    <div class="where">
+      <button class="where-btn" id="where-btn" type="button" aria-expanded="false" aria-controls="where-pop">
+        <i data-i="map-pin"></i>
+        <span id="where-label">¿Cómo recibirás tu compra?</span>
+        <i data-i="chevron-down" class="chev"></i>
+      </button>
+      <div class="where-pop" id="where-pop" role="dialog" aria-label="Despacho">
+        <b>Revisa disponibilidad en tu ubicación</b>
+        <p>Elige tu comuna para ver productos y tiempos de entrega.</p>
+        <label class="sel">Comuna<select id="comuna"><option>Providencia</option><option>Ñuñoa</option><option>Maipú</option><option>Viña del Mar</option></select></label>
+      </div>
+    </div>
+    <form class="search" id="search" role="search">
+      <input id="q" type="search" placeholder="Busca productos, marcas o categorías" aria-label="Buscar productos" autocomplete="off">
+      <button type="submit" aria-label="Buscar"><i data-i="search"></i></button>
+    </form>
+    <button class="login" id="btn-login" type="button"><i data-i="user-round"></i><span id="login-label">Iniciar sesión</span><i data-i="chevron-down" class="chev"></i></button>
+    <button class="cart-btn" id="btn-cart" type="button" aria-label="Abrir carrito">
+      <i data-i="shopping-cart"></i>
+      <b id="cart-count">0</b><span id="cart-total">$ 0</span>
+    </button>
+  </div>
+  <nav class="cats" aria-label="Categorías"><div class="wrap">
+    <button class="cats-all" id="cats-all" type="button" aria-expanded="false" aria-controls="mega"><i data-i="layout-grid"></i>Categorías</button>
+    <a href="#" data-cat="" class="hot"><i data-i="tag"></i>Ofertas</a>
+    <span class="grow"></span>
+    <a href="#" class="plain">Recetas</a><a href="#" class="plain">Tesoros Don Federico</a>
+    <button class="club" id="club" type="button">Suscríbete al <b>Club</b></button>
+  </div>
+  <div class="mega" id="mega"><div class="wrap"><div class="box" id="mega-box"></div></div></div></nav>
+</header>
+
+<main class="wrap page">
+  <h1 class="sr">Mercado Don Federico</h1>
+  <section id="pdp" class="pdp" hidden aria-live="polite"></section>
+  <section class="hero" aria-label="Campañas destacadas" id="hero">
+    <div class="slides">
+      <article class="slide s1"><div class="art" data-art="despensa"></div><div class="copy"><div class="frame"><small>Exclusivo online</small><span class="up">Hasta</span><b class="big">30<i>%</i></b><span class="dc">dcto</span><h2>en básicos del hogar</h2><p>Arroz, fideos, aceites y más, con despacho el mismo día.</p><button class="cta" data-cat="Despensa">Ver ofertas</button></div></div></article>
+      <article class="slide s2"><div class="art" data-art="frescos"></div><div class="copy"><div class="frame"><small>Directo del campo</small><h2 class="lead">Frutas y verduras frescas todos los días</h2><p>Seleccionadas cada mañana por nuestros productores.</p><button class="cta" data-cat="Frutas y verduras">Comprar frescos</button></div></div></article>
+      <article class="slide s3"><div class="art" data-art="club"></div><div class="copy"><div class="frame"><small>Club Don Federico</small><span class="up">Cupón</span><b class="big cup">DON10</b><h2>10% en tu próximo pedido</h2><p>Suma puntos y canjéalos cuando quieras.</p><button class="cta" id="hero-coupon">Usar cupón</button></div></div></article>
+    </div>
+    <button class="prev" aria-label="Anterior"><i data-i="chevron-left"></i></button><button class="next" aria-label="Siguiente"><i data-i="chevron-right"></i></button>
+    <div class="dots"></div>
+  </section>
+
+  <section class="club-banner" aria-label="Club Don Federico">
+    <div class="cb-copy"><small>En mi Club</small><b>Despachos gratis y ofertas exclusivas</b><span>La membresía que se paga sola.</span></div>
+    <ul class="cb-perks"><li><b>40%</b><span>dcto. en ofertas exclusivas</span></li><li><b>Gratis</b><span>despachos sobre $30.000</span></li><li><b>$100</b><span>dcto. por litro de combustible</span></li><li><b>x2</b><span>puntos acumulados</span></li></ul>
+    <a class="cta" href="#" id="club-cta">Conoce más aquí</a>
+  </section>
+
+  <div id="shelves"></div>
+
+  <section class="promos" aria-label="Promociones">
+    <div class="promo p1"><small>Pasta y salsas</small><b>2x1 en fideos seleccionados</b><i class="art" data-i="percent" data-sw="1.2"></i></div>
+    <div class="promo p2"><small>Cuidado del hogar</small><b>Llévate 3 y paga 2 en productos de limpieza</b><i class="art" data-i="spray-can" data-sw="1"></i></div>
+  </section>
+
+  <section class="featured"><h2 class="sec c">Categorías destacadas</h2>
+    <div class="shelf"><button class="sh-arrow l" aria-label="Anterior" data-scroll="-1"><i data-i="chevron-left"></i></button>
+    <div class="tiles" id="tiles" tabindex="0" role="region" aria-label="Categorías destacadas"></div>
+    <button class="sh-arrow r" aria-label="Siguiente" data-scroll="1"><i data-i="chevron-right"></i></button></div>
+  </section>
+
+  <div id="shelves-b"></div>
+</main>
+
+<section class="benefits" aria-label="Beneficios"><div class="wrap">
+  <div><i data-i="truck"></i><b>Despacho el mismo día</b><span>En pedidos antes de las 14:00</span></div>
+  <div><i data-i="store"></i><b>Retiro en tienda</b><span>Gratis en 2 horas</span></div>
+  <div><i data-i="lock"></i><b>Pago seguro</b><span>Tarjetas y transferencia</span></div>
+  <div><i data-i="rotate-ccw"></i><b>Cambios sin costo</b><span>Dentro de 48 horas</span></div>
+</div></section>
+
+<footer class="foot"><div class="wrap cols">
+  <div><h4>Mercado Don Federico</h4><a href="#">Quiénes somos</a><a href="#">Trabaja con nosotros</a><a href="#">Sostenibilidad</a></div>
+  <div><h4>Ayuda</h4><a href="#">Centro de ayuda</a><a href="#">Despachos y retiros</a><a href="#">Cambios y devoluciones</a></div>
+  <div><h4>Legal</h4><a href="#">Términos y condiciones</a><a href="#">Privacidad</a><a href="#">Libro de reclamaciones</a></div>
+  <div><h4>Atención</h4><span>Lun a dom, 8:00 a 22:00</span><span>600 000 0000 (ficticio)</span></div>
+</div><div class="copy">© 2026 Mercado Don Federico · Sitio ficticio de demostración · <a href="../shared/photos/creditos.html">Créditos de fotografías</a></div></footer>
+
+<aside class="drawer" id="drawer" aria-label="Carrito" aria-hidden="true">
+  <div class="drawer-head"><h2>Tu carrito</h2><button id="drawer-close" aria-label="Cerrar"><i data-i="x"></i></button></div>
+  <ul class="lines" id="lines"></ul>
+  <div class="coupon"><input id="coupon" placeholder="Cupón de descuento"><button id="apply-coupon">Aplicar</button></div>
+  <dl class="sum"><dt>Subtotal</dt><dd id="s-sub">$0</dd><dt id="s-disc-l" hidden>Descuento</dt><dd id="s-disc" hidden>$0</dd><dt>Despacho</dt><dd id="s-ship">$0</dd><dt class="tot">Total</dt><dd class="tot" id="s-total">$0</dd></dl>
+  <button class="pay" id="pay">Pagar pedido</button>
+  <div id="pay-result" aria-live="polite"></div>
+</aside>
+<div id="scrim" class="scrim"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "id": "degradacion-pasarela",
+  "titulo": "Degradación de la pasarela de pagos (alerta preventiva)",
+  "plataforma": "mercado",
+  "pasos": [
+    { "en": "0s", "trafico": { "rps": 2 }, "nota": "Requiere unos 10 minutos de tráfico sano antes, para calentar la ventana de sigma" },
+    { "en": "10s", "falla": { "servicio": "pasarela-pagos", "tipo": "degraded", "params": { "latency_ms": 950, "jitter_ms": 100 } } },
+    { "en": "120s", "restaurar": "todo" }
+  ]
+}

@@ -1,0 +1,50 @@
+# demo-lab como servicio aparte. Copia .env.example a .env, completa el correo y
+# la clave del Administrador de la empresa demo, y ejecuta:
+#
+#   docker compose up -d --build
+#
+# Con el Sentinel de Docker en esta misma máquina, agrega el segundo archivo para
+# que ambos se vean por nombre en la red de Sentinel:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.sentinel-local.yml up -d --build
+
+name: demo-lab
+
+services:
+  demo-lab:
+    build: .
+    image: demo-lab:local
+    restart: unless-stopped
+    environment:
+      DEMO_SENTINEL_EMAIL: ${DEMO_SENTINEL_EMAIL:?define DEMO_SENTINEL_EMAIL en .env (copia .env.example)}
+      DEMO_SENTINEL_PASSWORD: ${DEMO_SENTINEL_PASSWORD:?define DEMO_SENTINEL_PASSWORD en .env (copia .env.example)}
+      # Dónde está Sentinel y cómo lo alcanza este contenedor.
+      DEMO_SENTINEL_URL: ${DEMO_SENTINEL_URL:-http://host.docker.internal:8080}
+      # La dirección con la que SENTINEL alcanza a demo-lab para sondearlo.
+      DEMO_PUBLIC_URL: ${DEMO_PUBLIC_URL:-http://host.docker.internal:7000}
+      DEMO_PROFILE: ${DEMO_PROFILE:-local}
+      DEMO_TRAFFIC_RPS: ${DEMO_TRAFFIC_RPS:-2}
+      DEMO_DISCORD_WEBHOOK: ${DEMO_DISCORD_WEBHOOK:-}
+      DEMO_SLACK_WEBHOOK: ${DEMO_SLACK_WEBHOOK:-}
+      DEMO_PORTAL_PASSWORD: ${DEMO_PORTAL_PASSWORD:-}
+      DEMO_PORTAL_EMAIL: ${DEMO_PORTAL_EMAIL:-}
+      DEMO_SENTINEL_WEB_URL: ${DEMO_SENTINEL_WEB_URL:-}
+      # Acceso (A6): con DEMO_CONSOLE_KEY la consola y los sitios piden clave.
+      DEMO_CONSOLE_KEY: ${DEMO_CONSOLE_KEY:-}
+      DEMO_SITE_PASSWORD: ${DEMO_SITE_PASSWORD:-}
+      # Ventana de monitoreo (UTC), intervalos y correos por incidente.
+      DEMO_MONITORING_WINDOW: ${DEMO_MONITORING_WINDOW:-}
+      DEMO_POLL_INTERVAL: ${DEMO_POLL_INTERVAL:-}
+      DEMO_POLL_INTERVAL_IDLE: ${DEMO_POLL_INTERVAL_IDLE:-}
+      DEMO_EMAIL_MIN_SEVERITY: ${DEMO_EMAIL_MIN_SEVERITY:-}
+    ports:
+      # Por omisión solo esta máquina. DEMO_BIND=0.0.0.0 abre los sitios a otros
+      # equipos de la red; sin DEMO_CONSOLE_KEY también la consola y la API de control.
+      - "${DEMO_BIND:-127.0.0.1}:${DEMO_PORT:-7000}:7000"
+    volumes:
+      - demo-lab-data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  demo-lab-data:

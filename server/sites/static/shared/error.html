@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error {{CODE}} · {{NAME}}</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/common.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  .error-shell { min-height: 78vh; display: grid; place-items: center; padding: 32px 20px; }
+  .error-card { max-width: 620px; text-align: center; background: #fff; border-radius: 22px; padding: 42px 34px; box-shadow: 0 18px 60px rgba(20, 26, 34, .12); }
+  .error-code { display: inline-block; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: #fff; background: var(--site-ink, #24303a); border-radius: 999px; padding: 6px 14px; }
+  .error-card h1 { margin: 18px 0 10px; font-size: clamp(26px, 4vw, 38px); line-height: 1.15; color: var(--site-ink, #24303a); }
+  .error-card p { margin: 0 0 10px; color: #5b6470; font-size: 16px; line-height: 1.55; }
+  .retry { font-weight: 600; color: var(--site-ink, #24303a) !important; }
+  .error-card button { margin-top: 12px; border: 0; border-radius: 999px; padding: 12px 22px; font: inherit; font-weight: 700; color: #fff; background: var(--site-ink, #24303a); cursor: pointer; }
+  .error-card button:hover { filter: brightness(1.12); }
+  .error-card :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main class="error-shell">
+  <section class="error-card" role="alert" aria-live="polite">
+    <span class="error-code">Error {{CODE}}</span>
+    <h1>{{MESSAGE}}</h1>
+    <p>Estamos trabajando para restablecer el servicio. Esta página lo intenta de nuevo sola y vuelve al sitio en cuanto responde.</p>
+    <p class="retry">Reintentando en <b id="secs">10</b> s…</p>
+    <button id="retry" type="button">Reintentar ahora</button>
+  </section>
+</main>
+<script>
+  (() => {
+    const el = document.getElementById('secs');
+    let left = 10;
+    const tick = () => {
+      left -= 1;
+      if (left <= 0) { location.reload(); return; }
+      el.textContent = String(left);
+    };
+    setInterval(tick, 1000);
+    document.getElementById('retry').addEventListener('click', () => location.reload());
+  })();
+</script>
+<script type="module">
+  import { boot } from '../shared/common.js';
+  boot('{{PLATFORM}}');
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Lista de permitidos: solo entra al contexto de construcción lo que la imagen
+# necesita. Así las capturas de portales reales (.referencias_sitios*), el
+# estado con tokens (.state/), los logs (data/) y los perfiles con secretos
+# (config/profiles/*.json) no pueden llegar a la imagen aunque cambien los nombres.
+*
+!go.mod
+!go.sum
+!server/

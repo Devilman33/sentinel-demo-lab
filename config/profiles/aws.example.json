@@ -1,0 +1,8 @@
+{
+  "name": "aws",
+  "sentinel_url": "https://CLOUDFRONT_DOMAIN",
+  "services_url": "https://URL_PUBLICA_DEL_MODULO",
+  "poll_interval_seconds": 15,
+  "allow_db_backfill": false,
+  "state_dir": ".state"
+}
