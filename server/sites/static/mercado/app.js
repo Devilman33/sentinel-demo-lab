@@ -200,12 +200,12 @@ $('#btn-login').onclick = () => {
   const inp = 'width:100%;height:42px;padding:0 12px;margin:4px 0 12px;border:1px solid #c9ced3;border-radius:12px;font:inherit';
   back.innerHTML = `<form class="modal"><h2>Ingresa a tu cuenta</h2>
     <p style="color:#666;font-size:14px;line-height:20px">Sitio de demostración: usa <b>cliente@demo.cl</b> / <b>demo1234</b>. No ingreses datos reales.</p>
-    <label>Correo<br><input name="u" value="" style="${inp}"></label>
-    <label>Clave<br><input name="p" type="password" style="${inp}"></label>
+    <label>Correo<br><input name="u" value="cliente@demo.cl" style="${inp}"></label>
+    <label>Clave<br><input name="p" type="password" value="demo1234" style="${inp}"></label>
     <div id="login-msg"></div><button class="add">Ingresar</button></form>`;
   document.body.append(back);
   back.addEventListener('click', (e) => { if (e.target === back) back.remove(); });
-  back.querySelector('input').focus();
+  back.querySelector('button').focus();
   back.querySelector('form').onsubmit = async (e) => {
     e.preventDefault();
     const f = e.target, msg = back.querySelector('#login-msg');

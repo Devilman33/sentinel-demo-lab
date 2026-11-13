@@ -62,7 +62,7 @@ En unos segundos `http://localhost:7000/` muestra la consola y `http://localhost
 
 ## Uso con `go run` (perfil local)
 
-Requisitos: Go 1.26 (con acceso a internet la primera vez, para bajar `lib/pq`) y un Sentinel local arriba (`docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`) con las migraciones al día (el historial exige la versión 26) y una empresa demo con su Administrador ya registrados.
+Requisitos: Go 1.26 (con acceso a internet la primera vez, para bajar `lib/pq`) y un Sentinel local arriba (`docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`) con las migraciones al día (el historial exige la versión 32), los roles de login de api-go y api-ia creados (`DB_API_GO_PASSWORD` y `DB_API_IA_PASSWORD` en el `.env` raíz y `devbox run db-roles`, ver `docs/COMANDOS-DEV.md` del repo de Sentinel) y una empresa demo con su Administrador ya registrados.
 
 ```bash
 cd demo-lab
@@ -121,7 +121,8 @@ El reinicio deja el tráfico en `DEMO_TRAFFIC_RPS` (2 por omisión), no en 0, pa
 ## Datos para informes
 
 ```bash
-# Historial sintético: solo perfil local con "allow_db_backfill": true y DEMO_DB_DSN a localhost
+# Historial sintético: solo perfil local con "allow_db_backfill": true y DEMO_DB_DSN a localhost.
+# Con el usuario maestro (admin), no con sentinel_api_go: este no puede leer schema_migrations.
 export DEMO_DB_DSN="postgres://admin:password@localhost:5433/monitoring_db?sslmode=disable"
 curl -X POST   localhost:7000/control/v1/history -d '{"days":30,"incidents_per_day":3,"mttr_profile":"mejora"}'
 curl -X DELETE localhost:7000/control/v1/history

@@ -84,9 +84,9 @@ function login() {
   return new Promise((resolve) => {
     if (session) return resolve(true);
     const m = modal(`<h2>Ingresa a Mi Clínica</h2><p class="hint">Demostración: RUT <b>${DEMO.rut}</b>, clave <b>${DEMO.pass}</b>. No ingreses datos reales.</p>
-      <form><label class="fld">RUT<input name="rut"></label><label class="fld">Clave<input name="pass" type="password"></label><div id="lm"></div><button class="mbtn" style="width:100%">Ingresar</button></form>`);
+      <form><label class="fld">RUT<input name="rut" value="${DEMO.rut}"></label><label class="fld">Clave<input name="pass" type="password" value="${DEMO.pass}"></label><div id="lm"></div><button class="mbtn" style="width:100%">Ingresar</button></form>`);
     m.addEventListener('click', (e) => { if (e.target === m) resolve(false); });
-    m.querySelector('input').focus();
+    m.querySelector('button').focus();
     m.querySelector('form').onsubmit = async (e) => {
       e.preventDefault();
       const f = e.target, lm = m.querySelector('#lm');

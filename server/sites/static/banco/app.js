@@ -131,8 +131,8 @@ function loginView() {
   app.innerHTML = `<header class="top"><div class="wrap"><span class="wordmark"><i>D</i>Banco Don Federico</span><span class="seg">Banca personas</span></div></header>
     <main class="page"><div class="wrap"><form class="card login rise" id="login" novalidate><h1>Ingresa a tu banca en línea</h1>
       <p class="demo">Sitio de demostración. Usa RUT <b>${USER.rut}</b> y clave <b>${USER.pass}</b>. No ingreses datos reales.</p>
-      <div class="field"><input name="rut" id="rut" placeholder=" " autocomplete="off"><label for="rut">RUT</label></div>
-      <div class="field"><input name="pass" id="pass" type="password" placeholder=" " autocomplete="off"><label for="pass">Clave</label></div>
+      <div class="field"><input name="rut" id="rut" value="${USER.rut}" placeholder=" " autocomplete="off"><label for="rut">RUT</label></div>
+      <div class="field"><input name="pass" id="pass" type="password" value="${USER.pass}" placeholder=" " autocomplete="off"><label for="pass">Clave</label></div>
       <div id="msg" aria-live="polite"></div><button class="btn solid">Ingresar</button>
       <p class="fine">Tu clave es personal e intransferible.</p></form></div></main>`;
   $('#login').onsubmit = async (e) => {
@@ -232,7 +232,7 @@ function transferView() {
       <div class="balbox" id="balbox"><span>Disponible</span><span class="sk"></span></div></div>`;
   const confirmStep = () => `<dl class="summary-list"><dt>Destinatario</dt><dd>${esc(t.dest)}</dd><dt>Monto</dt><dd class="num">${peso(Number(t.amount))}</dd><dt>Mensaje</dt><dd>${esc(t.msg) || '—'}</dd><dt>Comprobante a</dt><dd>${esc(t.mail) || '—'}</dd></dl>
       <div class="actions"><button class="btn" id="back">Modificar</button><button class="btn solid" id="next">Confirmar datos</button></div>`;
-  const otpStep = () => `<p style="margin:0;font-size:14px">Ingresa los 6 dígitos de tu dispositivo de seguridad</p><div class="otp">${[0, 1, 2, 3, 4, 5].map((i) => `<input maxlength="1" inputmode="numeric" class="otp-d" aria-label="Dígito ${i + 1}">`).join('')}</div>
+  const otpStep = () => `<p style="margin:0;font-size:14px">Ingresa los 6 dígitos de tu dispositivo de seguridad</p><div class="otp">${[0, 1, 2, 3, 4, 5].map((i) => `<input maxlength="1" inputmode="numeric" class="otp-d" value="${i + 1}" aria-label="Dígito ${i + 1}">`).join('')}</div>
       <div id="result" aria-live="polite"></div><div class="actions"><button class="btn" id="back">Volver</button><button class="btn solid" id="send">Transferir</button></div>`;
   const loadTransferBalance = async () => {
     const box = $('#balbox');
